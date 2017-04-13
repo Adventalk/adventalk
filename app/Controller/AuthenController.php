@@ -3,7 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use Model\UtilisateurModel;
+use Model\MembreModel;
 use \W\Security\AuthentificationModel;
 
 class AuthenController extends Controller
@@ -14,19 +14,19 @@ class AuthenController extends Controller
 	 */
 	public function login()
 	{
-		$this->show('authen/login'); 
 		if(!empty($_POST)){
-            foreach($_POST as $elem)
-                if(empty($elem))
+            foreach($_POST as $elem){
+                if(empty($elem)){
                     $this->show('authen/login');
+				}
+			}
+			$dbUser = new MembreModel();
+			$utilisateur = $dbUser->loginUtilisateur($_POST); // logUserIn($user)
+			if($utilisateur["retour"]){
+				$this->redirectToRoute('home');
+			}
 		}
-		$dbUser = new UtilisateurModel();
-		$utilisateur = $dbUser->logUserIn($_POST);
-		
-		if($utilisateur["retour"]){
-			$this->redirectToRoute('home');
-		}
-			   $this->show('authen/login');
+		$this->show('authen/login');
 	}
 
 	/**
@@ -35,20 +35,20 @@ class AuthenController extends Controller
 	public function register()
 	{
         if(!empty($_POST)){
-            foreach($_POST as $elem)
-                if(empty($elem))
+            foreach($_POST as $elem){
+                if(empty($elem)){
                     $this->show('authen/register');
+				}
+			}
                 
-				//connexion à la BDD via une nouvelle instance
-                $dbUser = new UtilisateurModel();
-               	$utilisateur = $dbUser->ajouterUtilisateur($_POST);
-			    if($utilisateur["retour"]){
-				   $this->redirectToRoute('home');
-			    }
+			//connexion à la BDD via une nouvelle instance
+			$dbUser = new MembreModel();
+			$utilisateur = $dbUser->ajouterUtilisateur($_POST);
+			if($utilisateur["retour"]){
+				$this->redirectToRoute('home');
+			}
         }
-			   $this->show('authen/register');
-			
+		$this->show('authen/register');	
 	}
-	
 
-}
+} // END CLASS AuthenController

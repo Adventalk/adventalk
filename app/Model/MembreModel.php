@@ -10,7 +10,6 @@ class MembreModel extends UsersModel
 	//Ajouter un nouvel utilisateur
 	public function ajouterUtilisateur($arrayUser)
 	{
-
 		$this->setPrimaryKey("id_membre");
 
 		//création de l'instance
@@ -32,26 +31,25 @@ class MembreModel extends UsersModel
 		//retour de l'utilisateur au Controller
 		return array("retour"=>true, "message"=>$monUtilisateur);
 	}
-
-	//Ajouter un nouvel utilisateur
+	//Connexion utilisateur
 	public function loginUtilisateur($arrayUser)
 	{
-
+		$this->setPrimaryKey("id_membre");
 		//création de l'instance
 		$security = new AuthentificationModel();
-
 		//vérif email
-		if($this->emailExists($arrayUser['email']))
+		if(!$this->emailExists($arrayUser['email']))
 			return array("retour"=>false, "message"=>"Email exists");
-
-		
-
 
 		//vérif des infos sur l'utilisateur
 		$monUtilisateur = $security->isValidLoginInfo($arrayUser["email"], $arrayUser["mdp"]);
 
-		//retour de l'utilisateur au Controller
-		return array("retour"=>true, "message"=>$monUtilisateur);
+		if($monUtilisateur["id_membre"] <= 0)
+			return array("retour"=>false, "message"=>"Password exists");//retour de l'utilisateur au Controller
+
+		//Sauvegarder dans les variables de session
+		$security->logUserIn($monUtilisateur);
+		return array("retour"=>true, "message"=>$monUtilisateur);//retour de l'utilisateur au Controller
 	}
 
 	//récupération de toute la table utilisateurs
