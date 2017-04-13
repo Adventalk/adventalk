@@ -8,7 +8,6 @@ $this->layout('layout', ['title' => 'Connexion'])
 $this->start('main_content'); ?>
 
     <h1>Let's start Adventure !</h1>
-
     <form method="POST" action="">
         <label for="email">Email</label>
         <input type="email" name="email" id="email">

@@ -12,7 +12,6 @@ class HomeController extends Controller
     * Page d'accueil
     */
     public function accueil(){
-        var_dump($_SESSION["user"]);
         $this->show('home/accueil');
     }
 }

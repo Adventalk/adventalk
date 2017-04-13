@@ -60,8 +60,6 @@ class MembresController extends Controller
         }
         $this->show('gestionMembres/crudMembre', ["reponse" => $utilisateur]);
     }
-
-
     /*
      *  Affichage d'un membre
      */
@@ -72,6 +70,5 @@ class MembresController extends Controller
         $showProfil = $userModel->getUser();
 	    debug($showProfil);
     }
-
 }
     

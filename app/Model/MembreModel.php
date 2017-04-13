@@ -31,15 +31,12 @@ class MembreModel extends UsersModel
 		//retour de l'utilisateur au Controller
 		return array("retour"=>true, "message"=>$monUtilisateur);
 	}
-
 	//Connexion utilisateur
 	public function loginUtilisateur($arrayUser)
 	{
 		$this->setPrimaryKey("id_membre");
-
 		//création de l'instance
 		$security = new AuthentificationModel();
-
 		//vérif email
 		if(!$this->emailExists($arrayUser['email']))
 			return array("retour"=>false, "message"=>"Email exists");

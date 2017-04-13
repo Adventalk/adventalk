@@ -3,3 +3,4 @@ app/config.php
 /phpDocumentor.phar
 *.log
 /docs
+/W
