@@ -1,0 +1,65 @@
+/* ********** ACCUEIL ********** */
+div figure{
+    margin: 5px 0 0 5px;
+}
+
+/* ********** MESSAGERIE ********** */
+.contenu{
+    width: 80%;
+    margin-left: 20%;
+    padding-right: 20%;
+}
+
+
+/* ********** SIDENAV ********** */
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: transparent; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 0.8em;
+    color: black;
+    display: block;
+    transition: 0.3s;
+    width: 150px;
+}
+.sidenav li.show{
+    list-style-type: none;
+    position: relative;
+    display: block;
+}
+
+.sidenav li.hide{
+    display: none;
+    position: relative;
+}
+.sidenav ul li.show:hover ul li.hide{
+    text-decoration: none;
+    display: block;
+    font-size: 0.8em;
+    left: 50px;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    left: 40px;
+    font-size: 30px;
+    margin-left: 50px;
+    width: 40px;
+}
+
