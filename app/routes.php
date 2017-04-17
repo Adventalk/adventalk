@@ -17,16 +17,12 @@
 		['GET|POST', '/album/create', 'Album#create', 'createAlbum'],
 
 		// PHOTO
-		['GET|POST', '/album/photo/create', 'Photo#create', 'createPhoto'],
+		['GET|POST', '/album/photo/create', 'api#createPhoto', 'createPhoto'],
 
 // -------  BACK ---------------------------------------------------------------------------- //
-		// MEMBRE
+		// MEMBRES
 		['GET|POST', '/membres/create', 'Membres#create', 'create'],
-		['GET|POST', '/membres/create', 'Membres#read', 'read'],
-		['GET|POST', '/membres/create', 'Membres#readAll', 'readAll'],
-		['GET|POST', '/membres/create', 'Membres#update', 'update'],
-		['GET|POST', '/membres/create', 'Membres#delete', 'delete'],
-    
+		
 		//API CRUD
 		['POST', '/api/create', 'Api#create', 'api_create'],
 		['POST', '/api/read', 'Api#readAll', 'api_readAll'],

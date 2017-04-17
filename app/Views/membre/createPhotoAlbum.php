@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -47,17 +49,17 @@
 					<div class="grid">
 						
                         <figure class="one_third single-item-effect" style="margin: 1%; width: 15em;">
-                                <form method="post" id="formulairePhoto" enctype="multipart/form-data">
-									<input type="hidden" name="album_id_album" value="1">
-									<input type="hidden" name="id_photo" value="">
-									<input type="text" name="localite" id="localite" placeholder="localité"><br>
-									<label for="statut">Statut</label>
+                                <form action="" method="post" enctype="multipart/form-data" id="formulairePhoto">
+                                <input type="hidden" name="album_id_album" value="1">
+								<input type="hidden" name="id_photo" value="">
+                                <input type="text" name="localite" id="localite" placeholder="localité"><br>
+                                <label for="statut">Statut</label>
                                     <select name="statut" required>
                                         <option value="profil">Photo de profil</option><br>
                                         <option value="voyageur">Photo de voyage</option><br>
                                     </select><br>
                                     Ajouter des photos : <br />
-                                    <input name="photo" type="file" id="photo" multiple accept="image/*"/><br />
+                                    <input name="photo" type="file" id="photo" multiple /><br />
                                     
                                     <input type="text" name="titre" id="titre"placeholder="titre"><br>
                                     <input type="text" name="description" id="description" placeholder="description"><br>

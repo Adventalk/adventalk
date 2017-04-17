@@ -7,8 +7,16 @@ $this->layout('layout', ['title' => 'Création d\'une publication'])
 //début du bloc main_content
 $this->start('main_content'); ?>
 
-    <h1>Création d'une publication</h1>
+<div class="boxed">
+    <table id="tableau" style="margin:5%">
+
+
+    </table>
+    <h1>Gestion des publication</h1>
     <form method="post" action="#">
+    
+        <input type="hidden" name="id_publication" id="id_publication">
+        
         <label for="categorie">Catgéorie</label>
         <select name="categorie" required>
             <option value="bon plan">Bon plan</option>
@@ -37,6 +45,7 @@ $this->start('main_content'); ?>
         <input type="submit"value="Créer"/><br/>
     </form> 
 
+    
 <?php 
 //fin du bloc
 $this->stop('main_content'); ?>

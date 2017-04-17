@@ -3,6 +3,7 @@ namespace Model;
 
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
+use \W\View\Plates\PlatesExtensions;
 
 class MembreModel extends UsersModel 
 {
@@ -22,12 +23,17 @@ class MembreModel extends UsersModel
 		//Cryptage du password
 		$arrayUser["mdp"] = $security->hashPassword($arrayUser["mdp"]);
 
+		//Ajout de l'avatar
+		$result = $this->avatarUpload($arrayUser, $_FILES); // $_FILES => Tableau créer par php, il contient les infos des fichiers Uploader
+		$arrayUser["avatar"] = $result["filename"];
+		$msg = $result["msg"];
+
 		//Ajouter l'utilisateur
 		$monUtilisateur = $this->insert($arrayUser);
 
 		//Sauvegarder dans les variables de session
 		$security->logUserIn($monUtilisateur);
-
+		
 		//retour de l'utilisateur au Controller
 		return array("retour"=>true, "message"=>$monUtilisateur);
 	}
@@ -69,13 +75,65 @@ class MembreModel extends UsersModel
     public function userDelete($id){ 
 		$this->setPrimaryKey("id_membre");
         $this->delete($id);
-
     }
 	
     //Api update utilisateur
-    public function userUpdate($array, $id){ 
+    public function userUpdate($array, $arrayFile, $id){ 
 		$this->setPrimaryKey("id_membre");
-        $this->update($array, $id);
+		$msg = "Utilisateur modifié avec succès !";
+		$result = $this->avatarUpload($array, $arrayFile);
 
+		// Ne modifie pas l'avatar si il n'est pas mis à jours
+		if($result['newAvatar'] === true ){
+			$array["avatar"] = $result["filename"];
+			$msg = $result["msg"];
+		}
+
+        $this->update($array, $id);
+		return $msg;
+    }
+
+
+	//Api pour ajouter AVATAR
+    private function avatarUpload($array, $arrayFile){ 
+		$msg = "";
+
+		$avatar = 'default.jpg'; // Ajouter Avatar par défaut 
+		$newAvatar = false; // Variable pour verifier le changement d'avatar
+
+		if(!empty($arrayFile['avatar']['name'])){
+			if($arrayFile['avatar']['error'] == 0){
+				$ext = explode('/', $arrayFile['avatar']['type']);
+				$ext_autorise = array('jpeg', 'jpg', 'png');
+
+				if(in_array($ext[1], $ext_autorise)){
+
+					// Renomme la photo pour éviter les doublons
+					$avatar = $array['id_membre'] . "_" . rand(000000, 999999) . "." . pathinfo($arrayFile['avatar']['name'], PATHINFO_EXTENSION); 
+					$avatar = utf8_decode($avatar);
+
+					// enregistrer la photo dans le dossier photo/
+					$plates = new PlatesExtensions;
+					$chemin_photo = $plates->uploadUrl('gallery/' . $avatar);
+
+					// Copie la photo dans le dossier spécifié
+					$target_dir = "upload/avatar/";
+					$target_file = $target_dir . basename($avatar);
+					move_uploaded_file($arrayFile["avatar"]["tmp_name"], $target_file);
+					
+					$msg = "Utilisateur créé avec succès" ;
+					$newAvatar = true;
+					
+				}
+				else{
+					$msg .= 'Extensions autorisées : PNG, JPG, JPEG, GIF';
+				}
+			}
+			else{
+				$msg .= 'Veuillez selectionner une autre image';
+			}
+		} // Fin du if
+
+		return ['msg'=> $msg, 'filename' => $avatar, 'newAvatar' =>$newAvatar];
     }
 }

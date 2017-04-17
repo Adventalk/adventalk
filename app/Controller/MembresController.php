@@ -3,32 +3,34 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use Model\UtilisateurModel;
+use Model\MembreModel;
 
 class MembresController extends Controller
 {
-
     /* 
     * Création utilisateur
     */
     public function create(){
+        $msg = "" ;
         if(!empty($_POST)){
+
             foreach($_POST as $elem){
                 if(empty($elem)){
                     $this->show('gestion/gestionMembres/crudMembre');
                 }
             }
+            
             $dbuser = new MembreModel();
             $utilisateur = $dbuser->ajouterUtilisateur($_POST);
-
         }
-        $this->show('gestion/gestionMembres/crudMembre');
+        $this->show('gestion/gestionMembres/crudMembre', ["msg" => $msg] );
     }
 
     /* 
     * Update utilisateur
     */
     public function update($id){
+        $msg = "" ;
         $userModel = new MembreModel();
         $utilisateur = $userModel->readUser($id);
         
@@ -38,12 +40,11 @@ class MembresController extends Controller
                     $this->show('gestionMembres/crudMembre',["reponse" => $utilisateur, "erreur" => "champs manquants"]);
                 }
             }
-            $utilisateur = $userModel->update($_POST, $id);
-
+            $utilisateur = $userModel->userUpdate($_POST, $id);
+            $msg = "Utilisateur modifié avec succès" ;
         }
-        $this->show('gestionMembres/crudMembre', ["reponse" => $utilisateur]);
+        $this->show('gestionMembres/crudMembre', ["reponse" => $utilisateur, "msg" => $msg] );
     }
-
 
     /* 
     * Delete utilisateur
@@ -55,20 +56,21 @@ class MembresController extends Controller
         
         if(!empty($_POST)){
             if(isset($_POST["OUI"])){
-                $utilisateur = $userModel->delete($id);
+                $utilisateur = $userModel->userDelete($id);
             }
         }
         $this->show('gestionMembres/crudMembre', ["reponse" => $utilisateur]);
     }
+    
     /*
      *  Affichage d'un membre
      */
     public function profil(){
-        // permet de récupérer l'utilisateur
+        //$this->setPrimaryKey("id_membre");
         $userModel = new MembreModel();
-
-        $showProfil = $userModel->getUser();
-	    debug($showProfil);
+        // permet de récupérer l'utilisateur
+        $showProfil = $this->getUser();
+        $this->show('membre/profil', ["profil" => $showProfil]);
     }
 }
     

@@ -129,7 +129,7 @@ body {
 }
 .boxed{
     margin: 0 auto;
-    max-width: 900px;
+    max-width: 1200px; /* 900 */
     padding: 0 20px;
 }
 

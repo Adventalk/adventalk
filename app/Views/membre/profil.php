@@ -8,7 +8,14 @@ $this->layout('layout', ['title' => 'Profil'])
 $this->start('main_content');
 ?>
 
-<?= $showProfil ?>
+<h1> Mon Profil </h1>
+
+<p><span>Pseudo : </span><?= $profil["pseudo"] ?></p>
+<p><span>Nom : </span><?= $profil["nom"] ?></p>
+<p><span>Prenom : </span><?= $profil["prenom"] ?></p>
+<p><span>Email : </span><?= $profil["email"] ?></p>
+
+
 
 <?php 
 //fin du bloc

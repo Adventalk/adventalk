@@ -3,7 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use Model\UtilisateurModel;
+use Model\MembreModel;
 
 class HomeController extends Controller
 {

@@ -12,21 +12,39 @@
 		<link rel="stylesheet" type="text/css" href="<?= $this->assetUrl('css/normalize.css')?>" /><!-- CSS: Normalize -->
 		<link rel="stylesheet" type="text/css" href="<?= $this->assetUrl('css/font-awesome.min.css')?>" /><!-- CSS: Font Awesome -->
 		<link rel="stylesheet" type="text/css" href="<?= $this->assetUrl('css/styles.css')?>" /><!-- CSS: Main CSS -->
+		<link rel="stylesheet" type="text/css" href="<?= $this->assetUrl('css/styles-adventalk.css')?>" /><!-- CSS: Adeventalk CSS -->
 		<link rel="stylesheet" type="text/css" href="<?= $this->assetUrl('css/responsive.css')?>" />
+
 		<!-- CSS: Responsive CSS -->		
 		<link rel="stylesheet" type="text/css" href="<?= $this->assetUrl('css/adventalk_styles.css')?>" /> <!-- ?????? -->
 		
 </head>
 <body>
-	<div class="container">
-		<header>
-			
-		</header>
+	<div class="homepage index-home index">
 
+		<a class="cd-primary-nav-trigger" id="trigger-menu" href="#0">
+			<span class="cd-menu-icon"></span>
+		</a>
+
+		<!-- BOF: Fancy Search Form (content imported via jQuery: from search-form.html) -->
+		<div id="travelogue-search" class="travelogue-search">
+			<form action="search.html">
+				<input class="travelogue-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
+				<input class="travelogue-search-submit" type="submit" value="">
+				<span class="travelogue-icon-search fa fa-search"></span>
+			</form>
+		</div>
+		<!-- EOF: Fancy Search Form (content imported via jQuery: from search-form.html) -->
+
+<!-- ************* SECTION CONTENU ************************************************************************************ -->
 		<section>
-			<?= $this->section('main_content') ?>
-		</section>
 
+			<?= $this->section('main_content') ?>
+
+
+
+		</section>
+<!-- ****************************************************************************************************************** -->
 		<footer>
 		</footer>
 	</div>
@@ -44,5 +62,7 @@
 	
 	<?= $this->section('script_content') ?>
 	<a href="#" class="back-to-top">Top</a>
+
+</div>
 </body>
 </html>
