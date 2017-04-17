@@ -10,6 +10,7 @@ $(function(){ // lecture au chargement du document
 			$("#mdp").attr("name", "password");
 			$('#formulaire').show();
 			$("#form-mdp").show();
+			$('#resultat-msg').text("");
 			$("#mdp").attr("required", true);
 			$("#mdp-confirm").attr("required", true);
 			membre_id = 0;
@@ -24,6 +25,7 @@ $(function(){ // lecture au chargement du document
 					type: "post",
 					success: function(reponse){
 						totalUser(true);
+						$("#resultat-msg").text(reponse.message);
 					}
 				})
 			}
@@ -32,7 +34,9 @@ $(function(){ // lecture au chargement du document
 		// Fin de la fonction SUPPRIMER
 		
 		// Fonction pour RECHERCHER un utilisateur
-		$(".search").on("click", function(e){ 
+		$(".search").on("click", function(e){
+			$('#resultat-msg').text("");
+			
 			cleanForm();
 			$.ajax({
 				url: "http://localhost/adventalk/public/api/read/"+$(this).attr("membre_id"),
@@ -46,14 +50,17 @@ $(function(){ // lecture au chargement du document
 					$("#id_membre").val(utilisateur.id_membre);
 					$("#nom").val(utilisateur.nom);
 					$("#prenom").val(utilisateur.prenom);
-					$("#civilite").val(utilisateur.civilite);
+					$('#civilite option[value="' + utilisateur.civilite + '"]').prop('selected', true);
 					$("#date_naissance").val(utilisateur.date_naissance);
 					$("#email").val(utilisateur.email);
 					$("#ville").val(utilisateur.ville);
 					$("#pseudo").val(utilisateur.pseudo);
-					$("#photo_actuelle").val(utilisateur.avatar);
-					$("#statut").val(utilisateur.statut);
-					$("#rang").val(utilisateur.rang);
+					$("#avatarUser").attr("src", "http://localhost/adventalk/public/upload/avatar/" + utilisateur.avatar);
+					$('#statut option[value="' + utilisateur.statut + '"]').prop('selected', true);
+					$('#rang option[value="' + utilisateur.rang + '"]').prop('selected', true);	
+
+
+
 
 					// $("#mdp").removeAttr("name"); // Suppression ??
 					
@@ -90,7 +97,7 @@ $(function(){ // lecture au chargement du document
 			data: data,
 			success: function(reponse){
 				totalUser(true);
-				$("#resultat-msg").text(reponse);
+				$("#resultat-msg").text(reponse.message);
 			}
 		})
 	});
@@ -112,7 +119,7 @@ $(function(){ // lecture au chargement du document
 				else{
 					var tableau = "<tr><th>ID</th><th>Email</th><th>Nom</th><th>Prenom</th><th>Civilite</th><th>Date de naissance</th><th>Ville</th><th>Pseudo</th><th>Avatar</th><th>Statut</th><th>Post</th><th>Options</th></tr>";
 					for(var elem in reponse){
-						tableau += "<tr><td>"+reponse[elem].id_membre+"</td><td>"+reponse[elem].email+"</td><td>"+reponse[elem].nom+"</td><td>"+reponse[elem].prenom+"</td><td>"+reponse[elem].civilite+"</td><td>"+reponse[elem].date_naissance+"</td><td>"+reponse[elem].ville+"</td><td>"+reponse[elem].pseudo+"</td><td><img src='http://localhost/adventalk/public/upload/avatar/"+reponse[elem].avatar+"' />"+reponse[elem].avatar+"</td><td>"+reponse[elem].statut+"</td><td>"+reponse[elem].rang+"</td><td><input type='submit' membre_id='"+reponse[elem].id_membre+"' id='search' class='search' value='Modifier' name='search' '><input type='submit' membre_id='"+reponse[elem].id_membre+"' id='delete' class='delete' value='Supprimer' name='delete'></td></tr>";
+						tableau += "<tr><td>"+reponse[elem].id_membre+"</td><td>"+reponse[elem].email+"</td><td>"+reponse[elem].nom+"</td><td>"+reponse[elem].prenom+"</td><td>"+reponse[elem].civilite+"</td><td>"+reponse[elem].date_naissance+"</td><td>"+reponse[elem].ville+"</td><td>"+reponse[elem].pseudo+"</td><td><img src='http://localhost/adventalk/public/upload/avatar/"+reponse[elem].avatar+"' /></td><td>"+reponse[elem].statut+"</td><td>"+reponse[elem].rang+"</td><td><input type='submit' membre_id='"+reponse[elem].id_membre+"' id='search' class='search' name='search' value='' '><input type='submit' membre_id='"+reponse[elem].id_membre+"' id='delete' class='delete' name='delete' value=''></td></tr>";
 					}	
 					$("#tableau").html(tableau);
 				}
@@ -129,12 +136,14 @@ $(function(){ // lecture au chargement du document
 		}
 	} // End cleanForm
 
-	if($("#listeUser").length){
-		totalUser();
-	}
-	else{
-		totalUser(true);
-	}
+	totalUser(true);
+
+	// if($("#listeUser").length){
+	// 	totalUser();
+	// }
+	// else{
+	// 	totalUser(true);
+	// }
 
 });	// End function chargement
 

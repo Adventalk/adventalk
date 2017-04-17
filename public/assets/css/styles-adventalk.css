@@ -18,3 +18,122 @@ Author:     TeamLicorne
 #gestion-membre h1{
     text-align: center;
 }
+
+#gestion-membre #resultat-msg{
+    text-align: center;
+    background: green;
+    color: #eee;
+    font-size: 20px;
+}
+
+/* Formulaire*/
+
+#gestion-membre  td > img{
+    max-width: 100px;
+}
+
+#gestion-membre th{
+    font-size: 15px;
+    padding: 0 10px;
+    vertical-align: middle;
+}
+#gestion-membre td{
+    font-size: 12px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#gestion-membre #delete{
+    background-image: url("../img/user-delete.png");
+    border: none;
+    width: 50px;
+    height: 50px;
+}
+
+#gestion-membre #search{
+    background-image: url("../img/user-edit.png");
+    border: none;
+    width: 50px;
+    height: 50px;
+}
+
+/*---------------------------------------------*/
+/*--- 1. Pages Register Membre // FRONT -------*/
+/*---------------------------------------------*/
+#form-register{
+    margin: 0 auto 10%;
+    width: 350px;
+}
+#form-register input,
+#form-register label,
+#form-register select{
+    width: 350px;
+}
+
+#form-register input{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid 3px #7EC947;
+    background: #fff;
+}
+
+#form-register input:hover{
+    background:  #7EC947;
+    color: #eee;
+}
+
+#form-register select:focus,
+#form-register input:focus{
+    outline: 3px solid #7EC947;
+}
+#form-register  input[type="submit"]{
+    margin-top: 5%;
+    background: #7EC947;
+    font-size: 20px;
+    color: #fff;
+}
+#form-register  input[type="submit"]:hover{
+    background: #fff;
+    color: #7EC947;
+    border: solid 3px #7EC947;
+}
+
+/*Mise en forme du bouton d'UPLOAD de l'avatar */
+#form-register [type="file"] {
+  color: #878787;
+}
+#form-register [type="file"]::-webkit-file-upload-button {
+  background: #7EC947;
+  border: 2px solid #7EC947;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  outline: none;
+  padding: 10px 25px;
+  text-transform: uppercase;
+  transition: all 1s ease;
+}
+
+#form-register [type="file"]::-webkit-file-upload-button:hover {
+  background: #fff;
+  border: 2px solid #fff;
+  color: #000;
+}
+
+
+
+#registerUser{
+    max-width: 900px;
+    margin: 0 auto;
+}
+#registerUser h1{
+    text-align: center;
+}
+
+#registerUser label{
+	display: block;
+    font-size: 17px;
+    margin-top: 5%;
+}

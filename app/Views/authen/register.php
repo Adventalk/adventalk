@@ -6,8 +6,10 @@ $this->layout('layout', ['title' => 'Inscription'])
 <?php 
 //début du bloc main_content
 $this->start('main_content'); ?>
-    <h1>Let's start Adventure !</h1>
-    <form method="post" action="#" display="block !important">
+<section id="registerUser">
+
+    <h1>Commence l'aventure avec nous !</h1>
+    <form id="form-register" method="post" action="#" display="block !important"  enctype="multipart/form-data">
 
         <label for="nom">Nom</label>
         <input type="text" name="nom" id="nom">
@@ -36,16 +38,16 @@ $this->start('main_content'); ?>
         <label for="mdp">Mot de passe</label>
         <input type="password" name="mdp" id="mdp">
 
-        <label for="avatar">Avatar</label>
-		<input type="file" name="avatar" id="avatar"/><br/>
-        
-        <label for="mdp">Confirmez votre mot de passe</label>
-        <input type="password" name="mdp" id="mdp">
-        
+        <label for="mdp-confirm">Confirmez votre mot de passe</label>
+        <input type="password" name="mdp" id="mdp-confirm">
 
+        <label for="avatar">Avatar</label>
+		<input type="file" name="avatar" id="avatar"/>
+        
         <input type="submit" value="S'inscrire">
     </form>
 
+</section>
 <?php 
 //fin du bloc
 $this->stop('main_content'); ?>

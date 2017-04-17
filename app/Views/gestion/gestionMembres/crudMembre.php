@@ -9,16 +9,18 @@ $this->start('main_content'); ?>
 <section id="gestion-membre">
     <h1>Gestion des membres</h1>
 
+<!-- Permet l'affichage des messages d'erreurs -->
+	<div id="resultat-msg"></div>
+
+
 	<div class="boxed">
 		
 		<table id="tableau" style="margin:5%">
 			<!-- Affichage de tout les Membres  -->
 		</table>
 
-		<input type="submit" id="create" value="Create" >
-		
-		<div class="resultat"> <!-- Permet l'affichage des messages d'erreurs -->
-			<span id="resultat-msg"></span>
+		<div class="btn-create">
+			<input type="submit" id="create" value="Create" >
 		</div>
 
 		<!-- Affichage du formulaire pour créer un Membre  -->
@@ -34,7 +36,7 @@ $this->start('main_content'); ?>
 			<input type="text" name="prenom" id="prenom" required><br>
 
 			<label for="civilite">Civilité</label>
-			<select name="civilite" required>
+			<select id="civilite" name="civilite" required>
 				<option value="f">Femme</option><br>
 				<option value="m">Homme</option><br>
 			</select><br>
@@ -52,7 +54,10 @@ $this->start('main_content'); ?>
 			<input type="text" name="pseudo" id="pseudo" required><br>
 
 			<label for="avatar">Avatar</label>
+			<img id="avatarUser" src="" />
+
 			<input type="file" name="avatar" id="avatar"/><br/>
+
 
 			<!-- Permet l'affichage uniquement lors d'une creation et non d'une modification -->
 			<div id="form-mdp"> 
@@ -64,13 +69,13 @@ $this->start('main_content'); ?>
 			</div>
 
 			<label for="statut">Statut</label>
-			<select name="statut" required>
+			<select id="statut" name="statut" required>
 				<option value="0">Membre</option><br>
 				<option value="1">Admin</option> <br>
 			</select><br>
 
 			<label for="rang">Rang</label>
-			<select name="rang" required>
+			<select id="rang" name="rang" required>
 				<option value="Aspirant Voyageur">Aspirant Voyageur</option><br>
 				<option value="Voyageur Amateur">Voyageur Amateur</option><br>
 				<option value="Globe Trotter">Globe Trotter</option><br>

@@ -9,10 +9,10 @@ class MembreModel extends UsersModel
 {
 
 	//Ajouter un nouvel utilisateur
-	public function ajouterUtilisateur($arrayUser)
+	public function ajouterUtilisateur($arrayUser, $arrayFile)
 	{
 		$this->setPrimaryKey("id_membre");
-
+		$msg = "Utilisateur ajouté avec succès" ;
 		//création de l'instance
 		$security = new AuthentificationModel();
 
@@ -22,11 +22,10 @@ class MembreModel extends UsersModel
 
 		//Cryptage du password
 		$arrayUser["mdp"] = $security->hashPassword($arrayUser["mdp"]);
-
+		
 		//Ajout de l'avatar
-		$result = $this->avatarUpload($arrayUser, $_FILES); // $_FILES => Tableau créer par php, il contient les infos des fichiers Uploader
+		$result = $this->avatarUpload($arrayUser, $arrayFile); // $_FILES => Tableau créer par php, il contient les infos des fichiers Uploader
 		$arrayUser["avatar"] = $result["filename"];
-		$msg = $result["msg"];
 
 		//Ajouter l'utilisateur
 		$monUtilisateur = $this->insert($arrayUser);
@@ -35,7 +34,7 @@ class MembreModel extends UsersModel
 		$security->logUserIn($monUtilisateur);
 		
 		//retour de l'utilisateur au Controller
-		return array("retour"=>true, "message"=>$monUtilisateur);
+		return array("retour"=>true, "message"=>$msg);
 	}
 	//Connexion utilisateur
 	public function loginUtilisateur($arrayUser)
@@ -74,7 +73,9 @@ class MembreModel extends UsersModel
     //Api delete utilisateur
     public function userDelete($id){ 
 		$this->setPrimaryKey("id_membre");
+		$msg = "Utilisateur supprimé avec succès" ;
         $this->delete($id);
+		return array("retour"=>true, "message"=>$msg);
     }
 	
     //Api update utilisateur
@@ -88,9 +89,13 @@ class MembreModel extends UsersModel
 			$array["avatar"] = $result["filename"];
 			$msg = $result["msg"];
 		}
+		else{
+			$oldUser = $this->find($id);
+			$array["avatar"] = $oldUser["avatar"];
+		}
 
         $this->update($array, $id);
-		return $msg;
+		return array("retour"=>true, "message"=>$msg);
     }
 
 
@@ -109,7 +114,7 @@ class MembreModel extends UsersModel
 				if(in_array($ext[1], $ext_autorise)){
 
 					// Renomme la photo pour éviter les doublons
-					$avatar = $array['id_membre'] . "_" . rand(000000, 999999) . "." . pathinfo($arrayFile['avatar']['name'], PATHINFO_EXTENSION); 
+					$avatar = rand(000000, 999999) . "." . pathinfo($arrayFile['avatar']['name'], PATHINFO_EXTENSION); 
 					$avatar = utf8_decode($avatar);
 
 					// enregistrer la photo dans le dossier photo/
@@ -120,8 +125,7 @@ class MembreModel extends UsersModel
 					$target_dir = "upload/avatar/";
 					$target_file = $target_dir . basename($avatar);
 					move_uploaded_file($arrayFile["avatar"]["tmp_name"], $target_file);
-					
-					$msg = "Utilisateur créé avec succès" ;
+				
 					$newAvatar = true;
 					
 				}

@@ -40,10 +40,10 @@ class AuthenController extends Controller
                     $this->show('authen/register');
 				}
 			}
-                
+
 			//connexion à la BDD via une nouvelle instance
 			$dbUser = new MembreModel();
-			$utilisateur = $dbUser->ajouterUtilisateur($_POST);
+			$utilisateur = $dbUser->ajouterUtilisateur($_POST, $_FILES);
 			if($utilisateur["retour"]){
 				$this->redirectToRoute('home');
 			}

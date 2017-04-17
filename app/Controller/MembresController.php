@@ -41,7 +41,6 @@ class MembresController extends Controller
                 }
             }
             $utilisateur = $userModel->userUpdate($_POST, $id);
-            $msg = "Utilisateur modifié avec succès" ;
         }
         $this->show('gestionMembres/crudMembre', ["reponse" => $utilisateur, "msg" => $msg] );
     }

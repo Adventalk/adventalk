@@ -12,11 +12,10 @@ class ApiController extends Controller
     /**
     * API CREATE
     */
-    public function create(){
-        
-        $arrayPost = [ 'id_membre' => $_POST['id_membre'], 'nom' => $_POST['nom'], 'prenom' => $_POST['prenom'],  'civilite' => $_POST['civilite'], 'date_naissance' => $_POST['date_naissance'], 'email' => $_POST['email'], 'ville' => $_POST['ville'], 'pseudo' => $_POST['pseudo'], 'avatar' => $_POST['avatar'], 'mdp' => $_POST['mdp'],  'rang' => $_POST['rang']];
+    public function create(){  
+        $arrayPost = [ 'id_membre' => $_POST['id_membre'], 'nom' => $_POST['nom'], 'prenom' => $_POST['prenom'],  'civilite' => $_POST['civilite'], 'date_naissance' => $_POST['date_naissance'], 'email' => $_POST['email'], 'ville' => $_POST['ville'], 'pseudo' => $_POST['pseudo'], 'mdp' => $_POST['mdp'],  'statut' => $_POST['statut'], 'rang' => $_POST['rang']];
         $userModel = new MembreModel();
-        $this->showJson($userModel->ajouterUtilisateur($arrayPost));
+        $this->showJson($userModel->ajouterUtilisateur($arrayPost, $_FILES));
     }
 
     /**
@@ -47,6 +46,9 @@ class ApiController extends Controller
         $userModel = new MembreModel();
         $this->showJson($userModel->userDelete($id));
     }
+
+
+
 
         //////////////////// PHOTO ////////////////////
     /**
