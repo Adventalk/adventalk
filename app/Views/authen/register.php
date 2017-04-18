@@ -36,6 +36,9 @@ $this->start('main_content'); ?>
         <label for="mdp">Mot de passe</label>
         <input type="password" name="mdp" id="mdp">
 
+        <label for="avatar">Avatar</label>
+		<input type="file" name="avatar" id="avatar"/><br/>
+        
         <label for="mdp">Confirmez votre mot de passe</label>
         <input type="password" name="mdp" id="mdp">
         

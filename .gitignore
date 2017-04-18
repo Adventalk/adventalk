@@ -3,4 +3,5 @@ app/config.php
 /phpDocumentor.phar
 *.log
 /docs
-/W
+public/upload/avatar/*
+!public/upload/avatar/default.jpg

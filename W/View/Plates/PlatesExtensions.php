@@ -18,6 +18,8 @@ class PlatesExtensions implements ExtensionInterface
     public function register(Engine $engine)
     {
         $engine->registerFunction('assetUrl', [$this, 'assetUrl']);
+        //*** MODIFICATION ** //
+        $engine->registerFunction('uploadUrl', [$this, 'uploadUrl']);
         $engine->registerFunction('url', [$this, 'generateUrl']);
     }
 
@@ -30,6 +32,13 @@ class PlatesExtensions implements ExtensionInterface
     {
         $app = getApp();
         return $app->getBasePath() . '/assets/' . ltrim($path, '/');
+    }
+
+    //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- //**** MODIFICATION W ***// ------- 
+    public function uploadUrl($path)
+    {
+        $app = getApp();
+        return $app->getBasePath() . '/upload/' . ltrim($path, '/');
     }
 
     /**

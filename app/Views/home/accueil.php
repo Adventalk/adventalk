@@ -3,12 +3,40 @@
 $this->layout('layout', ['title' => 'Accueil'])
 ?>
 
-
 <?php 
 //fin du bloc
 $this->start('main_content'); ?>
 
-    <div class="homepage index-home index">
+	<div  class="homepage index-home index">
+		<div id="container" class="container intro-effect-grid">
+
+			<a class="cd-primary-nav-trigger" id="trigger-menu" href="#0">
+			  	<span class="cd-menu-icon"></span>
+			</a>
+
+			<!-- BOF: Fancy Search Form (content imported via jQuery: from search-form.html) -->
+			<div id="travelogue-search" class="travelogue-search">
+				<form action="search.html">
+					<input class="travelogue-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
+					<input class="travelogue-search-submit" type="submit" value="">
+					<span class="travelogue-icon-search fa fa-search"></span>
+				</form>
+			</div>
+			<!-- EOF: Fancy Search Form (content imported via jQuery: from search-form.html) -->
+
+<!-- Affiche de l'image en 100% avec la page 
+			<header class="header">
+				<div class="bg-img">
+					<img class="async-image hide" src="#" data-src="http://placehold.it/1280x720/7f8c8d/ffffff" alt="" />
+				</div>
+				<div class="title hidden" id="title">
+					<h1>I want to travel the world</h1>
+				</div>
+				<div class="overlay hidden" id="overlay"></div>
+			</header>
+			Bouton pour descendre sur le site 
+			<button class="trigger scroll-down-pulse"><span>Trigger</span></button>
+-->
 
 			<article class="content">
 				<div class="">
