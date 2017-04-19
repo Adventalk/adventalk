@@ -6,21 +6,18 @@ $this->layout('layout', ['title' => 'Gestion des membres'])
 <?php 
 //début du bloc main_content
 $this->start('main_content'); ?>
-<section id="gestion-membre">
-    <h1>Gestion des membres</h1>
+	<div id="gestion-membre">
+		<h1>Gestion des membres</h1>
 
-<!-- Permet l'affichage des messages d'erreurs -->
-	<div id="resultat-msg"></div>
-
-
-	<div class="boxed">
+		<!-- Permet l'affichage des messages d'erreurs -->
+		<div id="resultat-msg"></div>
 		
 		<table id="tableau" style="margin:5%">
 			<!-- Affichage de tout les Membres  -->
 		</table>
 
 		<div class="btn-create">
-			<input type="submit" id="create" value="Create" >
+			<input type="submit" id="create" value="Créer un nouvel utilisateur" >
 		</div>
 
 		<!-- Affichage du formulaire pour créer un Membre  -->
@@ -48,13 +45,16 @@ $this->start('main_content'); ?>
 			<input type="email" name="email" id="email" required><br>
 
 			<label for="ville">Ville</label>
-			<input type="ville" name="ville" id="ville"><br>
+			<input type="text" name="ville" id="ville"><br>
+
+			<label for="localite_actuelle">Localité actuelle</label>
+			<input type="text" name="localite_actuelle" id="localite_actuelle"><br>
 
 			<label for="pseudo">Pseudo</label>
 			<input type="text" name="pseudo" id="pseudo" required><br>
 
 			<label for="avatar">Avatar</label>
-			<img id="avatarUser" src="" />
+			<!--<img id="avatarUser" src="" />-->
 
 			<input type="file" name="avatar" id="avatar"/><br/>
 
@@ -86,7 +86,6 @@ $this->start('main_content'); ?>
 			<input type="submit" value="Enregistrer">
 		</form>
 	</div>
-</section>
 
 <?php 
 //fin du bloc

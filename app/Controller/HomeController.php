@@ -14,4 +14,11 @@ class HomeController extends Controller
     public function accueil(){
         $this->show('home/accueil');
     }
+
+     /**
+    * Page MAP
+    */
+    public function bigMap(){
+        $this->show('membre/map');
+    }
 }

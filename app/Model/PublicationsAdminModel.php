@@ -8,10 +8,9 @@ class PublicationsAdminModel extends Model{
 
     public function ajouterPublication($arrayPublication){
         $this->setPrimaryKey("id_publication");
-        $security = new Model();
+        // $security = new Model();
         $maPublication = $this->insert($arrayPublication);
     }
-
 
 //update une publication 
 

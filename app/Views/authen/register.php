@@ -6,10 +6,14 @@ $this->layout('layout', ['title' => 'Inscription'])
 <?php 
 //début du bloc main_content
 $this->start('main_content'); ?>
-<section id="registerUser">
+<section id="registerUser" class="content">
 
     <h1>Commence l'aventure avec nous !</h1>
-    <form id="form-register" method="post" action="#" display="block !important"  enctype="multipart/form-data">
+
+    <!-- Permet l'affichage des messages d'erreurs -->
+	<div id="resultat-msg"></div>
+
+    <form id="form-register" method="post" action="#" enctype="multipart/form-data">
 
         <label for="nom">Nom</label>
         <input type="text" name="nom" id="nom">
@@ -31,6 +35,9 @@ $this->start('main_content'); ?>
 
         <label for="ville">Ville</label>
         <input type="text" name="ville" id="ville">
+
+        <label for="localite_actuelle">Localité actuelle</label>
+		<input type="text" name="localite_actuelle" id="localite_actuelle"><br>
 
         <label for="pseudo">Pseudo</label>
         <input type="text" name="pseudo" id="pseudo">

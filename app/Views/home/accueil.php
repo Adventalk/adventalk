@@ -9,35 +9,6 @@ $this->start('main_content'); ?>
 
 	<div  class="homepage index-home index">
 		<div id="container" class="container intro-effect-grid">
-
-			<a class="cd-primary-nav-trigger" id="trigger-menu" href="#0">
-			  	<span class="cd-menu-icon"></span>
-			</a>
-
-			<!-- BOF: Fancy Search Form (content imported via jQuery: from search-form.html) -->
-			<div id="travelogue-search" class="travelogue-search">
-				<form action="search.html">
-					<input class="travelogue-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
-					<input class="travelogue-search-submit" type="submit" value="">
-					<span class="travelogue-icon-search fa fa-search"></span>
-				</form>
-			</div>
-			<!-- EOF: Fancy Search Form (content imported via jQuery: from search-form.html) -->
-
-<!-- Affiche de l'image en 100% avec la page 
-			<header class="header">
-				<div class="bg-img">
-					<img class="async-image hide" src="#" data-src="http://placehold.it/1280x720/7f8c8d/ffffff" alt="" />
-				</div>
-				<div class="title hidden" id="title">
-					<h1>I want to travel the world</h1>
-				</div>
-				<div class="overlay hidden" id="overlay"></div>
-			</header>
-			Bouton pour descendre sur le site 
-			<button class="trigger scroll-down-pulse"><span>Trigger</span></button>
--->
-
 			<article class="content">
 				<div class="">
 					<div class="grid">
@@ -158,32 +129,5 @@ $this->start('main_content'); ?>
 		</div><!-- /container -->
     </div>
 <?php $this->stop('main_content'); ?>	
-<?php $this->start('script_content'); ?>
-    <script>
-			var index = 1;
-			var t;
-	
-			$('.content > div > .grid').infinitescroll({
-				debug		 	: false,
-				loading: {
-					finished	: function( opts ){},
-					start		: startAjax,
-				},				
-				navSelector  	: "#infinitescroll",
-				nextSelector 	: "#infinitescroll",
-				itemSelector 	: "figure",
-				dataType	 	: 'html',
-		        maxPage         : 4,
-				path: function(index) {
-					var count = parseInt(index)-1;
-					return "ajax/content-"+count+".html";
-				},
-		    });
-
-			function startAjax( opts ) {
-				$.infinitescroll.prototype.options = opts;
-			    $.infinitescroll.prototype.beginAjax(opts);
-			}
-        </script>
-<?php $this->stop('script_content'); ?>	
+<?= $this->section('script_content') ?>
 		

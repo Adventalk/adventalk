@@ -14,7 +14,9 @@ Author:     TeamLicorne
 /*---------------------------------------------*/
 /*--- 1. Pages Gestion Membres // BACK --------*/
 /*---------------------------------------------*/
-
+#gestion-membre{
+    max-width: 1200px;
+}
 #gestion-membre h1{
     text-align: center;
 }
@@ -26,7 +28,7 @@ Author:     TeamLicorne
     font-size: 20px;
 }
 
-/* Formulaire*/
+/* Tableau */
 
 #gestion-membre  td > img{
     max-width: 100px;
@@ -57,20 +59,59 @@ Author:     TeamLicorne
     height: 50px;
 }
 
+/* Formulaire  */
+
+#formulaire{
+    margin: 0 auto 10%;
+    width: 350px;
+    font-size: 15px;
+}
+#formulaire input,
+#formulaire label,
+#formulaire select{
+    width: 350px;
+    padding: 9px;
+}
+
+#formulaire label{
+	display: block;
+}
+#formulaire input[type="submit"]{
+    margin-top: 5%;
+}
+
+#formulaire input,
+#formulaire select{
+    border: solid 2px #7EC947;
+    background: #fff;
+}
+
+#gestion-membre .btn-create input[type="submit"]{
+    width: 100%;
+    margin-top: 0;
+}
+
+
+
 /*---------------------------------------------*/
 /*--- 1. Pages Register Membre // FRONT -------*/
 /*---------------------------------------------*/
-#form-register{
+#form-register,
+#form-login{
     margin: 0 auto 10%;
     width: 350px;
 }
 #form-register input,
 #form-register label,
-#form-register select{
+#form-register select,
+#form-login input,
+#form-login label,
+#form-login select{
     width: 350px;
 }
 
-#form-register input{
+#form-register input,
+#form-login input{
     border-top: none;
     border-left: none;
     border-right: none;
@@ -78,28 +119,41 @@ Author:     TeamLicorne
     background: #fff;
 }
 
-#form-register input:hover{
+#form-register input:hover,
+#form-login input:hover{
     background:  #7EC947;
     color: #eee;
 }
 
 #form-register select:focus,
-#form-register input:focus{
+#form-register input:focus,
+#form-login select:focus,
+#form-login input:focus{
     outline: 3px solid #7EC947;
 }
-#form-register  input[type="submit"]{
+
+.btn-create input[type="submit"],
+#form-register  input[type="submit"],
+#form-login  input[type="submit"],
+#formulaire input[type="submit"]{
     margin-top: 5%;
     background: #7EC947;
     font-size: 20px;
     color: #fff;
+    border: solid 3px #7EC947;
 }
-#form-register  input[type="submit"]:hover{
+
+.btn-create input[type="submit"]:hover,
+#form-register input[type="submit"]:hover,
+#form-login input[type="submit"]:hover,
+#formulaire input[type="submit"]:hover{
     background: #fff;
     color: #7EC947;
     border: solid 3px #7EC947;
 }
 
-/*Mise en forme du bouton d'UPLOAD de l'avatar */
+
+/***** Mise en forme du bouton d'UPLOAD de l'avatar *****/
 #form-register [type="file"] {
   color: #878787;
 }
@@ -122,17 +176,19 @@ Author:     TeamLicorne
   color: #000;
 }
 
+/********************************************************/
 
-
-#registerUser{
+#registerUser,
+#loginUser{
     max-width: 900px;
-    margin: 0 auto;
 }
-#registerUser h1{
+#registerUser h1,
+#loginUser h1{
     text-align: center;
 }
 
-#registerUser label{
+#registerUser label,
+#loginUser label{
 	display: block;
     font-size: 17px;
     margin-top: 5%;

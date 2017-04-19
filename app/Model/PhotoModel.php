@@ -1,4 +1,3 @@
-
 <?php /* app/Model/CommentModel.php */
 namespace Model;
 
@@ -22,14 +21,16 @@ class PhotoModel extends Model
 	//récupération de toute la table utilisateurs
 	public function readAllPhotos(){
 		$this->setPrimaryKey("id_photo");
-		return $this->findAll();
+        
+		    return $this->findAll();
 	}
 
-	//récupération d'un seul utilisateur
+	//récupération des infos d'une photo
 	public function readPhoto($id){
 		$this->setPrimaryKey("id_photo");
 		return $this->find($id);
 	}
+
 
 	
     //Api delete utilisateur
@@ -42,7 +43,7 @@ class PhotoModel extends Model
     //Api update utilisateur
     public function photoUpdate($arrayPost, $id){ 
 		$this->setPrimaryKey("id_photo");
-        $this->update($array, $id);
+        $this->update($arrayPost, $id);
 
     }
 
@@ -52,9 +53,8 @@ class PhotoModel extends Model
             // Traitement sur les photos :
             $nom_photo = 'default.jpg';
 
-            if(isset($array['photo'])){ 
-                $nom_photo = $array['photo'];
-            }
+            $arrayPost = ['album_id_album' => $_POST['album_id_album'], 'id_photo' => $_POST['id_photo'],  'titre' => $_POST['titre'], 'description' => $_POST['description'],  'statut' => $_POST['statut'], 'localite' => $_POST['localite']];
+            $fileFiles = ['photo' => $files['photo']['name']];
 
             if(!empty($files['photo']['name'])){ // Si l'utilisateur a utilisé le champ file
                 if($files['photo']['error'] == 0){
@@ -64,8 +64,8 @@ class PhotoModel extends Model
                     if(in_array($ext[1], $ext_autorise)){
 
                         // Renomme la photo pour éviter les doublons
-                        $nom_photo = rand(000000, 999999) . '_' . $files['photo']['name']; 
-                        $nom_photo = utf8_decode($nom_photo);
+                        $nom_photo = $_POST['album_id_album'] . '_' . $_POST['titre']  . '_' .  $files['photo']['name'];; 
+                        //$nom_photo = utf8_decode($nom_photo);
 
                         // enregistrer la photo dans le dossier photo/
                         $plates = new PlatesExtensions();
@@ -87,8 +87,10 @@ class PhotoModel extends Model
             } // Fin du if(!empty($files['photo']['name']))
 
             $array["photo"] = $files['photo']['name'];
-            $utilisateur = $this->insert($array);
+            $utilisateur = $this->insert($array, $fileFiles);
             return $utilisateur;
      
     }
+
+    
 }

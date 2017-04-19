@@ -24,7 +24,7 @@ class MembreModel extends UsersModel
 		$arrayUser["mdp"] = $security->hashPassword($arrayUser["mdp"]);
 		
 		//Ajout de l'avatar
-		$result = $this->avatarUpload($arrayUser, $arrayFile); // $_FILES => Tableau créer par php, il contient les infos des fichiers Uploader
+		$result = $this->avatarUpload($arrayUser, $arrayFile);
 		$arrayUser["avatar"] = $result["filename"];
 
 		//Ajouter l'utilisateur
@@ -36,6 +36,8 @@ class MembreModel extends UsersModel
 		//retour de l'utilisateur au Controller
 		return array("retour"=>true, "message"=>$msg);
 	}
+
+	
 	//Connexion utilisateur
 	public function loginUtilisateur($arrayUser)
 	{
@@ -78,20 +80,29 @@ class MembreModel extends UsersModel
 		return array("retour"=>true, "message"=>$msg);
     }
 	
-    //Api update utilisateur
+    //Api Mettre à jours un utilisateur
     public function userUpdate($array, $arrayFile, $id){ 
 		$this->setPrimaryKey("id_membre");
 		$msg = "Utilisateur modifié avec succès !";
-		$result = $this->avatarUpload($array, $arrayFile);
+
+		$oldUser = $this->find($id);
 
 		// Ne modifie pas l'avatar si il n'est pas mis à jours
+		$result = $this->avatarUpload($array, $arrayFile);
 		if($result['newAvatar'] === true ){
 			$array["avatar"] = $result["filename"];
 			$msg = $result["msg"];
 		}
 		else{
-			$oldUser = $this->find($id);
 			$array["avatar"] = $oldUser["avatar"];
+		}
+
+		// ne modifie pas le mot-de-passe s'il est vide
+		if(isset($array["mdp"]) && $array["mdp"] != ""){
+			$array["mdp"] = $security->hashPassword($array["mdp"]);
+		}
+		else{
+			$array["mdp"] = $oldUser["mdp"];
 		}
 
         $this->update($array, $id);
@@ -140,4 +151,16 @@ class MembreModel extends UsersModel
 
 		return ['msg'=> $msg, 'filename' => $avatar, 'newAvatar' =>$newAvatar];
     }
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////// MAPS requête pour récupérer localité, nom, prénom, avatar ////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	public function googleMap(){		
+		
+		$resultat =$this->dbh->query('SELECT * FROM membre');
+		return $resultat->fetchAll();
+
+
+	}
 }

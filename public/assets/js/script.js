@@ -50,17 +50,15 @@ $(function(){ // lecture au chargement du document
 					$("#id_membre").val(utilisateur.id_membre);
 					$("#nom").val(utilisateur.nom);
 					$("#prenom").val(utilisateur.prenom);
-					$('#civilite option[value="' + utilisateur.civilite + '"]').prop('selected', true);
+					$('#civilite option[value="' + utilisateur.civilite + '"]').prop('selected', true); // .prop() Permet de selectionner le bon champ dans le select
 					$("#date_naissance").val(utilisateur.date_naissance);
 					$("#email").val(utilisateur.email);
 					$("#ville").val(utilisateur.ville);
+					$("#localite_actuelle").val(utilisateur.localite_actuelle);
 					$("#pseudo").val(utilisateur.pseudo);
-					$("#avatarUser").attr("src", "http://localhost/adventalk/public/upload/avatar/" + utilisateur.avatar);
+					// $("#avatarUser").attr("src", "http://localhost/adventalk/public/upload/avatar/" + utilisateur.avatar);
 					$('#statut option[value="' + utilisateur.statut + '"]').prop('selected', true);
 					$('#rang option[value="' + utilisateur.rang + '"]').prop('selected', true);	
-
-
-
 
 					// $("#mdp").removeAttr("name"); // Suppression ??
 					
@@ -98,6 +96,7 @@ $(function(){ // lecture au chargement du document
 			success: function(reponse){
 				totalUser(true);
 				$("#resultat-msg").text(reponse.message);
+				$('html, body').animate({ scrollTop: 0 }, 0);
 			}
 		})
 	});
@@ -117,9 +116,9 @@ $(function(){ // lecture au chargement du document
 					$("#listeUser").html(option);
 				}
 				else{
-					var tableau = "<tr><th>ID</th><th>Email</th><th>Nom</th><th>Prenom</th><th>Civilite</th><th>Date de naissance</th><th>Ville</th><th>Pseudo</th><th>Avatar</th><th>Statut</th><th>Post</th><th>Options</th></tr>";
+					var tableau = "<tr><th>ID</th><th>Email</th><th>Nom</th><th>Prenom</th><th>Civilite</th><th>Date de Naissance</th><th>Ville</th><th>Localité Actuelle</th><th>Pseudo</th><th>Avatar</th><th>Statut</th><th>Post</th><th>Options</th></tr>";
 					for(var elem in reponse){
-						tableau += "<tr><td>"+reponse[elem].id_membre+"</td><td>"+reponse[elem].email+"</td><td>"+reponse[elem].nom+"</td><td>"+reponse[elem].prenom+"</td><td>"+reponse[elem].civilite+"</td><td>"+reponse[elem].date_naissance+"</td><td>"+reponse[elem].ville+"</td><td>"+reponse[elem].pseudo+"</td><td><img src='http://localhost/adventalk/public/upload/avatar/"+reponse[elem].avatar+"' /></td><td>"+reponse[elem].statut+"</td><td>"+reponse[elem].rang+"</td><td><input type='submit' membre_id='"+reponse[elem].id_membre+"' id='search' class='search' name='search' value='' '><input type='submit' membre_id='"+reponse[elem].id_membre+"' id='delete' class='delete' name='delete' value=''></td></tr>";
+						tableau += "<tr><td>"+reponse[elem].id_membre+"</td><td>"+reponse[elem].email+"</td><td>"+reponse[elem].nom+"</td><td>"+reponse[elem].prenom+"</td><td>"+reponse[elem].civilite+"</td><td>"+reponse[elem].date_naissance+"</td><td>"+reponse[elem].ville+"</td><td>"+reponse[elem].localite_actuelle+"</td><td>"+reponse[elem].pseudo+"</td><td><img src='http://localhost/adventalk/public/upload/avatar/"+reponse[elem].avatar+"' /></td><td>"+reponse[elem].statut+"</td><td>"+reponse[elem].rang+"</td><td><input type='submit' membre_id='"+reponse[elem].id_membre+"' id='search' class='search' name='search' value='' '><input type='submit' membre_id='"+reponse[elem].id_membre+"' id='delete' class='delete' name='delete' value=''></td></tr>";
 					}	
 					$("#tableau").html(tableau);
 				}
@@ -144,6 +143,58 @@ $(function(){ // lecture au chargement du document
 	// else{
 	// 	totalUser(true);
 	// }
+
+	/***************** nav ********************/
+	/**** admin ****/
+	$('nav ul li a#profil').hover(function(){
+		$('.profil').toggleClass('hide');
+	})
+
+	$('nav ul li a#gMembre').hover(function(){
+		$('.gMembre').toggleClass('hide');
+	})
+
+	$('nav ul li a#gPublication').hover(function(){
+		$('.gPublication').toggleClass('hide');
+	})
+
+	$('nav ul li a#gMessage').hover(function(){
+		$('.gMessage').toggleClass('hide');
+	})
+
+	$('nav ul li a#gMap').hover(function(){
+		$('.gMap').toggleClass('hide');
+	})
+
+	$('nav ul li a#statistiques').hover(function(){
+		$('.statistiques').toggleClass('hide');
+	})
+
+	$('nav ul li a#deconnexionAd').hover(function(){
+		$('.deconnexionAd').toggleClass('hide');
+	})
+
+/**** admin ****/
+
+	$('nav ul li a#publication').hover(function(){
+		$('.publication').toggleClass('hide');
+	})
+
+	$('nav ul li a#message').hover(function(){
+		$('.message').toggleClass('hide');
+	})
+
+	$('nav ul li a#maps').hover(function(){
+		$('.maps').toggleClass('hide');
+	})
+
+	$('nav ul li a#amis').hover(function(){
+		$('.amis').toggleClass('hide');
+	})
+
+	$('nav ul li a#deconnexionMb').hover(function(){
+		$('.deconnexionMb').toggleClass('hide');
+	})
 
 });	// End function chargement
 

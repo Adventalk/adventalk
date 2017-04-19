@@ -5,3 +5,4 @@ app/config.php
 /docs
 public/upload/avatar/*
 !public/upload/avatar/default.jpg
+public/upload/gallery/*

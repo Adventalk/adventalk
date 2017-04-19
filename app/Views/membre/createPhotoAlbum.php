@@ -1,45 +1,14 @@
+<?php 
+//hérite du fichier layout.php à la racine de app/Views/
+$this->layout('layout', ['title' => 'Ajout Photo'])
+?>
+
+<?php
+//début du bloc main_content
+$this->start('main_content'); 
+?>
 
 
-
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<meta name="author" content="Travelogue" />
-
-		<title>Travelogue | Single Post</title>
-		<link rel="shortcut icon" href="img/favicon.ico">
-
-		<!-- ### CSS Stylesheets ##################################################################### -->
-		<link rel="stylesheet" type="text/css" href="../../assets/css/normalize.css" /><!-- CSS: Normalize -->
-		<link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome.min.css" /><!-- CSS: Font Awesome -->
-		<link rel="stylesheet" type="text/css" href="../../assets/css/styles.css" /><!-- CSS: Main CSS -->
-		<link rel="stylesheet" type="text/css" href="../../assets/css/responsive.css" /><!-- CSS: Responsive CSS -->		
-        <link rel="stylesheet" type="text/css" href="../../assets/css/adventalk_styles.css" /><!-- CSS: Responsive CSS -->		
-	</head>
-	<body class="index-single">
-
-		
-
-		<!-- BOF: Fancy Search Form (content imported via jQuery: from search-form.html) -->
-		<div id="travelogue-search" class="travelogue-search">
-			<form>
-				<input class="travelogue-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
-				<input class="travelogue-search-submit" type="submit" value="">
-				<span class="travelogue-icon-search fa fa-search"></span>
-			</form>
-		</div>
-		<!-- EOF: Fancy Search Form (content imported via jQuery: from search-form.html) -->
-
-			<header>
-				
-			</header>
-			
-			
-			<section>
-				
 					<div style="text-align: center">					
 						<h2 class="black">Vos albums</h2>
 						<h3 class="subline">Créez vos albums et conservez tous vos souvenirs</h3>
@@ -47,11 +16,12 @@
 			
 			    <div class="contenu" style="width: 80%; margin: 0 auto;">
 					<div class="grid">
-						
+						<div class="photo">
+						</div>
                         <figure class="one_third single-item-effect" style="margin: 1%; width: 15em;">
                                 <form action="" method="post" enctype="multipart/form-data" id="formulairePhoto">
-                                <input type="hidden" name="album_id_album" value="1">
-								<input type="hidden" name="id_photo" value="">
+                                <input type="hidden" name="album_id_album" id="album_id_album" value="">
+								<input type="hidden" name="id_photo" id="id_photo" value="">
                                 <input type="text" name="localite" id="localite" placeholder="localité"><br>
                                 <label for="statut">Statut</label>
                                     <select name="statut" required>
@@ -70,7 +40,10 @@
 						
                     </div>
 				</div>
-			</section>
+<?php 
+//fin du bloc
+$this->stop('main_content');
+?>
 
 
 

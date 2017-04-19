@@ -653,3 +653,20 @@ URL:        http://modeltheme.com/travelogue/
     /* Add new rules for this interval below */
 
 }
+
+/******** CUSTOM ADVENTALK ***********/
+
+@media only screen and (max-width: 1200px){
+    div#accueil .one_third, div#accueil .one_sixth, div#accueil .sixth_one, div#accueil .two_third{
+        width: 50%;
+    }
+    div#accueil .one_half{
+        width:100%;
+    }
+}
+
+@media only screen and (max-width: 603px){
+    div#accueil .one_third, div#accueil .one_sixth, div#accueil .sixth_one, div#accueil .two_third, div#accueil .one_half{
+        width: 100%;
+    }
+}

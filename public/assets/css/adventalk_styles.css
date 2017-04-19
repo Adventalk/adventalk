@@ -1,3 +1,33 @@
+/******/
+a{
+    text-decoration: none;
+}
+html{
+    height:100%;
+}
+/************* HEADER **************/
+header.layout{
+    position:fixed;
+    height:3.5rem;
+    background-color: rgba(0, 0, 0, 1);
+    z-index:200;
+    top:0;
+    width:100%;
+    right:0;
+    box-shadow:0 0  .2em rgba(0, 0, 0, .6);
+}
+
+a h1{
+    font-size:2rem;
+    color:white;
+    background: black;
+    position:fixed;
+    z-index:400;
+    margin: 0rem 0 0 3.6rem;
+    padding: .25rem;
+
+}
+
 /* ********** ACCUEIL ********** */
 div figure{
     margin: 5px 0 0 5px;
@@ -11,55 +41,136 @@ div figure{
 }
 
 
-/* ********** SIDENAV ********** */
-/* The side navigation menu */
-.sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 2; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: transparent; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+/* ********** NAV ********** */
+/* ********** *** ********** */
+
+nav {
+    position:fixed;
+    z-index:300;
+    left:0;
+    top:0;
+    bottom:0;
+    width:3.8rem;
+    /*transform:translateX(-100%);*/
+    background-color: rgba(0, 0, 0, 1);
+    transition-duration:0.6s;
+    box-shadow:0 0  .2em rgba(0, 0, 0, .6);
 }
 
-/* The navigation menu links */
-.sidenav a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 0.8em;
-    color: black;
-    display: block;
-    transition: 0.3s;
-    width: 150px;
-}
-.sidenav li.show{
-    list-style-type: none;
-    position: relative;
-    display: block;
+nav ul li{
+    padding:2rem 0;
+    list-style:none;
 }
 
-.sidenav li.hide{
-    display: none;
-    position: relative;
-}
-.sidenav ul li.show:hover ul li.hide{
-    text-decoration: none;
-    display: block;
-    font-size: 0.8em;
-    left: 50px;
+nav ul li:first-child{
+    margin-top:6rem;
 }
 
-/* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    left: 40px;
-    font-size: 30px;
-    margin-left: 50px;
-    width: 40px;
+nav ul li a{
+    transition-duration:0.6s;
+    padding-left:1.2rem;
+    color:#00E676;
+    font-size:1.8rem;
 }
 
+ul{
+    padding-left:0 !important;
+}
+
+/*** nav admin ***/
+/*** ********* ***/
+
+.hide{
+    display:none;
+}
+
+span.profil, span.gMessage,span.gPublication, span.gMap, span.statistiques, span.gMembre, span.deconnexionAd, span.amis, span.message, span.publication, span.maps, span.deconnexionMb{
+    background:black;
+    color:#00E676;
+    position:fixed;
+    border-radius: 2px;
+    font-size: 1rem;
+    padding: 0 .15em;
+    width: 4rem;
+    left: 4.3rem;
+    text-align: center;
+    z-index:600;
+    box-shadow:0 0  .2em rgba(0, 0, 0, .6);
+}
+
+span.profil{
+    top: 8.7rem;
+}
+
+span.gMessage{
+    top: 22.2rem;
+} 
+
+span.publication{
+    top: 22.2rem;
+    width:7.8rem;
+}
+
+span.gMembre{
+    width:12rem;
+    top: 15.3rem;
+} 
+
+span.gPublication{
+    top: 28.8rem;
+    width:13rem;
+} 
+span.amis{
+    top: 28.8rem;
+}
+span.gMap{
+    top: 35.5rem;
+    width:10rem;
+} 
+span.message{
+    top: 15.3rem;
+}
+span.maps{
+    top: 35.5rem;
+}
+
+span.statistiques, span.deconnexionMb{
+    top: 42.2rem;
+    width:7rem;
+} 
+
+span.deconnexionAd{
+    top: 48.8rem;
+    width: 7.8rem;
+}
+/************** ACCUEIL ****************/
+
+div.one_sixth figure.der_msg{
+    height:24.77em;
+}
+
+div.one_sixth figure.mappy{
+    height:12.3em;
+}
+section.content {
+    margin-top: 4.5rem;
+    margin-left: 4.8rem;
+}
+
+section.content figcaption{
+    background: black;
+}
+div.one_half figure:not(#slide){
+    height:19.4rem;
+    width:48.3%;
+}
+
+div.one_half figure#map{
+    width:49.15%;
+}
+/*************** page MAP ****************/
+
+div#p_map div#map{
+    width:100%;
+    height:57.5rem;
+}
